@@ -18,7 +18,7 @@
 //                        comboselect: comboselect
                     });
                 }
-
+                $(this).unbind('change');
                 $(this).change(function () {
                     if ($(this).val() != '' && $(this).val() != null && $(this).val() != settings.emptyText) {
                         $.ajax({
@@ -26,7 +26,7 @@
                             async: true,
                             success: function (result) {
                                 if (settings.empty) {
-                                    result = '<option>' + settings.emptyText + '</option>' + result;
+                                    result = '<option value="">' + settings.emptyText + '</option>' + result;
                                 }
                                 selector.html(result);
                                 var selectDestId = '#' + selector.attr('id');
@@ -40,7 +40,8 @@
                             }
                         });
                     } else {
-                        var result = '<option>' + settings.emptyText + '</option>';
+//                        var result = '<option>' + settings.emptyText + '</option>';
+                        var result = '';
                         selector.html(result);
 //                        $(this).change();
                         selector.change();
@@ -119,4 +120,3 @@
     };
 
 })(jQuery);
-
